@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <form action="/Upload2018-6-5/UploadServlet" method="post" enctype="multipart/form-data" onsubmit="return checkFiles()">
+    		<table border="1">
+    			<tbody>
+    			<tr>
+    				<th>请选择文件</th>
+    				<td><input type="file" name="attachment" onchange="change(event)"/><input type="text" name="info1"/>
+    			</td>
+    			</tr>
+    			</tbody>
+    		
+    			<tr>
+    				<td colspan="2"><input type="submit" value="上传"/></td>
+    			</tr>
+    		</table>
+    		
+    	</form>
+    </body>
+     <script>
+
+  		//判断所有file是否已经选中，如果任何一个没有选择，则该函数返回false，这时表单不能提交
+  		function checkFiles(){
+  			var fileList = document.getElementsByName("attachment");
+  			for(var i=0;i<fileList.length;i++){
+  				//该file组件没有选文件
+  				if(fileList[i].value==null || fileList[i].value==""){
+  					alert("你的第"+(i+1)+"个文件没有选择！！！");
+  					return false;
+  				}
+  			}
+  			return true;
+  		}
+  		
+  		function change(ev){       
+         var event = window.event || ev;
+         var files = event.target.files[0];
+         var myimg = document.getElementById("myimg");
+         myimg.src = URL.createObjectURL(files);
+         myimg.hidden="";
+}
+
+  </script>
+</html>
